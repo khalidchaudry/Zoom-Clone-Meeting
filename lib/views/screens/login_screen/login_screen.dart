@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:zoom/controllers/auth_controller.dart';
 import 'package:zoom/views/screens/screens_path.dart';
 
-import '../../../global_widgets/widgets.dart';
+import '../../global_widgets/widgets.dart';
 
 // ignore: must_be_immutable
 class LoginScreen extends StatelessWidget {

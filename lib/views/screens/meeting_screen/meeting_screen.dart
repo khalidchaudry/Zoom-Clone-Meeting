@@ -1,35 +1,39 @@
 import 'dart:math';
-
 import 'package:flutter/material.dart';
 import 'package:zoom/controllers/jitsi_meet_controller.dart';
 import 'package:zoom/utils/constants.dart';
 import 'package:zoom/views/screens/meeting_screen/reusable_icon_button_widget.dart';
 
-import '../../../utils/colors.dart';
+import '../../global_widgets/widgets.dart';
+import '../screens_path.dart';
 
-// ignore: use_key_in_widget_constructors
-class MeetingScreen extends StatelessWidget {
+class MeetingScreen extends StatefulWidget {
+  const MeetingScreen({Key? key}) : super(key: key);
+
+  @override
+  State<MeetingScreen> createState() => _MeetingScreenState();
+}
+
+class _MeetingScreenState extends State<MeetingScreen> {
   final jitsimeeting = JitsiMeetController();
 
   createNewMeeting() {
     var random = Random();
-    var roomName = (random.nextInt(100000) + 100000).toString();
+    var roomName = (random.nextInt(10000000) + 10000000).toString();
 
     jitsimeeting.createMeeting(
         roomName: roomName, isAudioMuted: false, isVideoMuted: true);
   }
 
+  joinMeeting() => Navigator.of(context)
+      .push(MaterialPageRoute(builder: (context) => const JoinMeetingScreen()));
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          centerTitle: true,
-          title: const Text(
-            'Meet & Chat',
-            style: appBarTextStyle,
-          ),
-          backgroundColor: kBackgroundColor,
-          elevation: 0,
+        appBar: const PreferredSize(
+          preferredSize: Size(double.infinity, 50),
+          child: AppBarWidget(appbarTitle: 'Meet & Chat'),
         ),
         body: Padding(
           padding: const EdgeInsets.symmetric(vertical: 10.0),
@@ -45,7 +49,7 @@ class MeetingScreen extends StatelessWidget {
                   ReusableIconButtonWidget(
                       text: 'Join Meeting',
                       iconData: Icons.add_box_outlined,
-                      press: () {}),
+                      press: joinMeeting),
                   ReusableIconButtonWidget(
                       text: 'Schedule',
                       iconData: Icons.calendar_month,
