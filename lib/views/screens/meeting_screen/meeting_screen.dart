@@ -26,7 +26,7 @@ class _MeetingScreenState extends State<MeetingScreen> {
   }
 
   joinMeeting() => Navigator.of(context)
-      .push(MaterialPageRoute(builder: (context) => const JoinMeetingScreen()));
+      .push(MaterialPageRoute(builder: (context) => JoinMeetingScreen()));
 
   @override
   Widget build(BuildContext context) {

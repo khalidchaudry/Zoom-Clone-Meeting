@@ -28,9 +28,4 @@ class AuthController {
       }
     }
   }
-
-  signOutWithGoogle() async {
-    final GoogleSignInAccount? googleSignOutAccount =
-        await GoogleSignIn().signOut();
-  }
 }
